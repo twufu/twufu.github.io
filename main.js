@@ -49,7 +49,7 @@ function buyLean(){
 };
 
 window.setInterval(function(){
-    mine(1)
+    mine(1/2)
     save()
     document.getElementById('picks').innerHTML = picks;
     document.getElementById('stone').innerHTML = stone;
