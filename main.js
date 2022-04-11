@@ -1,6 +1,8 @@
-var stone = 0;
-var picks = 0;
-var lean = 0;
+import break_eternity from "./break_eternity";
+
+var stone = new Decimal(0);
+var picks = new Decimal(0);
+var lean = new Decimal(0);
 
 function mine(number){
     stone = stone + number*(Math.pow(2,lean+1)/2);
@@ -24,33 +26,43 @@ window.onload = function load(){
     if (typeof savegame.lean !== "undefined") lean = savegame.lean;
 }
 
+function max(x,y,z){ // x is current cost, y is what the cost is multiplied by, z is how much currency you have
+    x = x * y
+    if(z >= x){
+        return [x, 1]
+    }
+
+}
+
 function buyPick(){
-    var pickCost = Math.floor(10 * Math.pow(1.1,picks));     //works out the cost of this cursor
-    if(stone >= pickCost){                                   //checks that the player can afford the cursor
-        picks = picks + 1;                                   //increases number of cursors
-    	stone = stone - pickCost;                          //removes the cookies spent
-        document.getElementById('picks').innerHTML = picks;  //updates the number of cursors for the user
-        document.getElementById('stone').innerHTML = stone;  //updates the number of cookies for the user
+    var pickCost = new Decimal(Math.floor(10 * Math.pow(1.1,picks)));  
+    if(stone >= pickCost){                                
+        picks = picks.plus(1);                                 
+    	stone = stone.minus(pickCost)                     
+        document.getElementById('picks').innerHTML = picks; 
+        document.getElementById('stone').innerHTML = stone;
     };
-    var nextCost = Math.floor(10 * Math.pow(1.1,picks));       //works out the cost of the next cursor
-    document.getElementById('pickCost').innerHTML = nextCost;  //updates the cursor cost for the user
+    var nextCost = Math.floor(10 * Math.pow(1.1,picks));      
+    document.getElementById('pickCost').innerHTML = nextCost;  
 };
 
 function buyLean(){
-    var leanCost = Math.floor(300 * Math.pow(3,lean));     //works out the cost of this cursor
-    if(stone >= leanCost){                                   //checks that the player can afford the cursor
-        lean = lean + 1;                                   //increases number of cursors
-    	stone = stone - leanCost;                          //removes the cookies spent
-        document.getElementById('lean').innerHTML = lean;  //updates the number of cursors for the user
-        document.getElementById('stone').innerHTML = stone;  //updates the number of cookies for the user
+    var leanCost = Math.floor(300 * Math.pow(3,lean));     
+    if(stone >= leanCost){                                  
+        lean = lean + 1;                                
+    	stone = stone - leanCost;                         
+        document.getElementById('lean').innerHTML = lean;  
+        document.getElementById('stone').innerHTML = stone; 
     };
-    var nextCost = Math.floor(300 * Math.pow(3,lean));        //works out the cost of the next cursor
-    document.getElementById('leanCost').innerHTML = nextCost;  //updates the cursor cost for the user
+    var nextCost = Math.floor(300 * Math.pow(3,lean));      
+    document.getElementById('leanCost').innerHTML = nextCost;  
 };
 
 window.setInterval(function(){
-    mine(1/2)
+
+	mine(picks/2)
     save()
+
     document.getElementById('picks').innerHTML = picks;
     document.getElementById('stone').innerHTML = stone;
     document.getElementById('lean').innerHTML = lean;
