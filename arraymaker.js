@@ -1,4 +1,4 @@
-import "break_infinity.js";
+import "./break_infinity.js";
 var array = {}
 var array2 = {}
 var basePrice = new Decimal(10)
