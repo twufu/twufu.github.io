@@ -1,6 +1,6 @@
-var stone = new Decimal(0);
-var picks = new Decimal(0);
-var lean = new Decimal(0);
+var stone = 0;
+var picks = 0;
+var lean = 0;
 
 function mine(number){
     stone = stone + number*(Math.pow(2,lean+1)/2);
