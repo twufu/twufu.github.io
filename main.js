@@ -33,14 +33,14 @@ function max(x,y,z){ // x is current cost, y is what the cost is multiplied by, 
 }
 
 function buyPick(){
-    var pickCost = new Decimal(Math.floor(10 * Math.pow(1.1,picks)));  
+    var pickCost = Math.floor(10 * Math.pow(1.1,picks));  
     if(stone >= pickCost){                                
         picks = picks.plus(1);                                 
     	stone = stone.minus(pickCost)                     
         document.getElementById('picks').innerHTML = picks; 
         document.getElementById('stone').innerHTML = stone;
     };
-    var nextCost = Math.floor(10 * Math.pow(1.1,picks));      
+    var nextCost = Math.floor(10 * Math.pow(1.1,picks));   
     document.getElementById('pickCost').innerHTML = nextCost;  
 };
 
