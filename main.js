@@ -1,5 +1,3 @@
-import break_eternity from "./break_eternity";
-
 var stone = new Decimal(0);
 var picks = new Decimal(0);
 var lean = new Decimal(0);
