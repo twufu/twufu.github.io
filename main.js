@@ -4,6 +4,7 @@ var lean = 0;
 
 function click(number){
     cookies = cookies + number*Math.pow(2, lean);
+    console.log(cookies)
     document.getElementById("cookies").innerHTML = cookies;
 };
 
