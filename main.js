@@ -51,7 +51,7 @@ function buyLean(){
 
 window.setInterval(function(){
 
-	click(cursors)
+    click(cursors+1)
     save()
 
     document.getElementById('cursors').innerHTML = cursors;
