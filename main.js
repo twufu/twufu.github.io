@@ -49,18 +49,21 @@ function buyLean(){
     document.getElementById('leanCost').innerHTML = nextCost;  
 };
 
-window.setInterval(function(){
+while (true) {
+    setTimeout(function(){
+        click(cursors)
+        save()
 
-    click(cursors+1)
-    save()
+        console.log("Yeah")
 
-    document.getElementById('cursors').innerHTML = cursors;
-    document.getElementById('cookies').innerHTML = cookies;
-    document.getElementById('lean').innerHTML = lean;
-    document.getElementById('cursorCost').innerHTML = Math.floor(10 * Math.pow(1.1,cursors));
-    if (lean > 1) {
-        document.getElementById('leanCost').innerHTML = Math.floor(300 * Math.pow(3,lean)); 
-    }
+        document.getElementById('cursors').innerHTML = cursors;
+        document.getElementById('cookies').innerHTML = cookies;
+        document.getElementById('lean').innerHTML = lean;
+        document.getElementById('cursorCost').innerHTML = Math.floor(10 * Math.pow(1.1,cursors));
 
-}, 1000);
+        if (lean > 1) {
+            document.getElementById('leanCost').innerHTML = Math.floor(300 * Math.pow(3,lean)); 
+        }
+    }, 1000);
+}
 
