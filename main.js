@@ -35,7 +35,7 @@ function max(x,y,z){ // x is current cost, y is what the cost is multiplied by, 
 function buyPick(){
     var pickCost = Math.floor(10 * Math.pow(1.1,picks));  
     if(stone >= pickCost){                                
-        picks = picks.plus(1);                                 
+        picks = picks + 1                            
     	stone = stone.minus(pickCost)                     
         document.getElementById('picks').innerHTML = picks; 
         document.getElementById('stone').innerHTML = stone;
