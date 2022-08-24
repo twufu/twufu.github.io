@@ -49,9 +49,8 @@ function buyLean(){
     document.getElementById('leanCost').innerHTML = nextCost;  
 };
 
-while (true) {
-    setTimeout(function(){
-        click(cursors)
+window.setInterval(function(){
+    click(cursors)
         save()
 
         console.log("Yeah")
@@ -64,6 +63,5 @@ while (true) {
         if (lean > 1) {
             document.getElementById('leanCost').innerHTML = Math.floor(300 * Math.pow(3,lean)); 
         }
-    }, 1000);
-}
+}, 1000)
 
