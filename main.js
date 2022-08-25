@@ -23,7 +23,7 @@ window.onload = function load(){
 }
 
 function calc(opt){
-	if (opt == "dabloons") return Math.pow(cookies, 0.5)/5000;
+	if (opt == "dabloons") return Math.pow(cookies, 0.5)/1000;
 }
 
 function updateGui() {
@@ -33,9 +33,12 @@ function updateGui() {
     document.getElementById('cursorCost').innerHTML = Math.floor(10 * Math.pow(1.1,cursors));
 	document.getElementById('dabloons').innerHTML = dabloons;
 	
-	if (calc("dabloons") > 1) {
+	if (calc("dabloons") > 0.01) {
 		document.getElementById('dabloonsOnDabloon').innerHTML = calc("dabloons")
-	}
+	} else {
+        document.getElementById('dabloonsOnDabloon').innerHTML = 0
+        document.getElementById('dabloonBtn').innerHTML = "Reach 1 dabvloonm to get Them"
+    }
 
     if (lean > 1) {
         document.getElementById('leanCost').innerHTML = Math.floor(300 * Math.pow(3,lean)); 
@@ -75,11 +78,13 @@ function buyLean(){
 };
 
 function dabloon(){
-	dabloons = calc("dabloons")
-	cookies = 0;
-	cursors = 0;
-	lean = 0;
-	updateGui()
+    if (calc("dabloons") > 1) {
+        dabloons = calc("dabloons")
+        cookies = 0;
+        cursors = 0;
+        lean = 0;
+        updateGui()
+    }
 }
 
 window.setInterval(function(){
