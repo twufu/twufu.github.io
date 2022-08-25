@@ -38,7 +38,7 @@ function updateGui() {
         document.getElementById('dabloonBtn').textContent = "GET DABLOONS!!!!"
 	} else {
         document.getElementById('dabloonsOnDabloon').innerHTML = 0
-        document.getElementById('dabloonBtn').textContent = "Reach 1 dabvloonm to get Them"
+        document.getElementById('dabloonBtn').textContent = "Reach 1,000,000 cookies to get Them"
     }
 
     if (lean > 1) {
