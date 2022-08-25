@@ -35,9 +35,10 @@ function updateGui() {
 	
 	if (calc("dabloons") > 0.01) {
 		document.getElementById('dabloonsOnDabloon').innerHTML = calc("dabloons")
+        document.getElementById('dabloonBtn').textContent = "GET DABLOONS!!!!"
 	} else {
         document.getElementById('dabloonsOnDabloon').innerHTML = 0
-        document.getElementById('dabloonBtn').innerHTML = "Reach 1 dabvloonm to get Them"
+        document.getElementById('dabloonBtn').textContent = "Reach 1 dabvloonm to get Them"
     }
 
     if (lean > 1) {
@@ -79,7 +80,7 @@ function buyLean(){
 
 function dabloon(){
     if (calc("dabloons") > 1) {
-        dabloons = calc("dabloons")
+        dabloons += calc("dabloons")
         cookies = 0;
         cursors = 0;
         lean = 0;
