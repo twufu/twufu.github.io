@@ -48,7 +48,7 @@ function updateGui() {
 
 function gain(number){
     if (number == "undefined") {number = 1}
-    cookies = cookies + number*Math.pow(2, lean);
+    cookies = cookies + number*Math.pow(2, lean)*(dabloons+1);
     console.log(cookies);
     document.getElementById("cookies").innerHTML = cookies;
 };
