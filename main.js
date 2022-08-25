@@ -3,8 +3,9 @@ var cursors = 0;
 var lean = 0;
 
 function click(number){
+    if (number == "undefined") {number = 1}
     cookies = cookies + number*Math.pow(2, lean);
-    console.log(cookies)
+    console.log(cookies);
     document.getElementById("cookies").innerHTML = cookies;
 };
 
