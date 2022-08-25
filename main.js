@@ -33,7 +33,7 @@ function updateGui() {
     document.getElementById('cursorCost').innerHTML = Math.floor(10 * Math.pow(1.1,cursors));
 	document.getElementById('dabloons').innerHTML = dabloons;
 	
-	if (calc("dabloons") > 0.01) {
+	if (calc("dabloons") > 1) {
 		document.getElementById('dabloonsOnDabloon').innerHTML = calc("dabloons")
         document.getElementById('dabloonBtn').textContent = "GET DABLOONS!!!!"
 	} else {
