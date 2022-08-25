@@ -1,19 +1,14 @@
 var cookies = 0;
 var cursors = 0;
 var lean = 0;
-
-function click(number){
-    if (number == "undefined") {number = 1}
-    cookies = cookies + number*Math.pow(2, lean);
-    console.log(cookies);
-    document.getElementById("cookies").innerHTML = cookies;
-};
+var dabloons = 0;
 
 function save(){
     var savegame = {
         cookies: cookies,
         cursors: cursors,
-        lean: lean
+        lean: lean,
+		dabloons: dabloons
     }
 
     localStorage.setItem("save",JSON.stringify(savegame));
@@ -24,7 +19,36 @@ window.onload = function load(){
     if (typeof savegame.cookies !== "undefined") cookies = savegame.cookies;
     if (typeof savegame.cursors !== "undefined") cursors = savegame.cursors;
     if (typeof savegame.lean !== "undefined") lean = savegame.lean;
+	if (typeof savegame.dabloons !== "undefined") dabloons = savegame.dabloons;
 }
+
+function calc(opt){
+	if (opt == "dabloons") return Math.pow(cookies, 0.5)/5000;
+}
+
+function updateGui() {
+	document.getElementById('cursors').innerHTML = cursors;
+    document.getElementById('cookies').innerHTML = cookies;
+    document.getElementById('lean').innerHTML = lean;
+    document.getElementById('cursorCost').innerHTML = Math.floor(10 * Math.pow(1.1,cursors));
+	document.getElementById('dabloons').innerHTML = dabloons;
+	
+	if (calc("dabloons") > 1) {
+		document.getElementById('dabloonsOnDabloon').innerHTML = calc("dabloons")
+	}
+
+    if (lean > 1) {
+        document.getElementById('leanCost').innerHTML = Math.floor(300 * Math.pow(3,lean)); 
+    }
+}
+
+function gain(number){
+    if (number == "undefined") {number = 1}
+    cookies = cookies + number*Math.pow(2, lean);
+    console.log(cookies);
+    document.getElementById("cookies").innerHTML = cookies;
+};
+
 
 function buyCursor(){
     var cursorCost = Math.floor(10 * Math.pow(1.1,cursors));  
@@ -50,19 +74,21 @@ function buyLean(){
     document.getElementById('leanCost').innerHTML = nextCost;  
 };
 
+function dabloon(){
+	dabloons = calc("dabloons")
+	cookies = 0;
+	cursors = 0;
+	lean = 0;
+	updateGui()
+}
+
 window.setInterval(function(){
-    click(cursors)
-        save()
-
-        console.log("Yeah")
-
-        document.getElementById('cursors').innerHTML = cursors;
-        document.getElementById('cookies').innerHTML = cookies;
-        document.getElementById('lean').innerHTML = lean;
-        document.getElementById('cursorCost').innerHTML = Math.floor(10 * Math.pow(1.1,cursors));
-
-        if (lean > 1) {
-            document.getElementById('leanCost').innerHTML = Math.floor(300 * Math.pow(3,lean)); 
-        }
+    gain(cursors)
+    updateGui()
 }, 1000)
 
+window.onbeforeunload = closingCode;
+function closingCode(){
+   save()
+   return null;
+}
