@@ -1,0 +1,44 @@
+// ==UserScript==
+// @name         New Userscript
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://stackoverflow.com/questions/64852092/simulating-an-enter-key-in-an-input-using-javascript-and-tampermonkey
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=stackoverflow.com
+// @grant        none
+// ==/UserScript==
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function checkEnter(event) {
+  var sTopics;
+  var eKey = event.key;
+  if (eKey == "Enter") {
+    sTopics = document.getElementById("selTopics");
+    sTopics.innerHTML += document.getElementById("TText").value.concat("<br>");
+    document.getElementById("TText").value = "";
+  }
+}
+
+function callCat() {
+    const userAction = async () => {
+  const response = await fetch('https://cataas.com/cat');
+  const myJson = await response.json(); //extract JSON from the http response
+        console.log(myJson);
+  // do something with myJson
+    }
+}
+
+(function() {
+    'use strict';
+
+    while (true) {
+    callCat();
+    sleep(2000);
+  // code block to be executed
+}
+
+})();
